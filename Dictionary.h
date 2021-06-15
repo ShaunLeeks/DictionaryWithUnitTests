@@ -7,26 +7,19 @@ template <typename KEY, typename DATA>
 class Dictionary
 {
 public:
-	Dictionary();
 	void insert(KEY key, DATA data);
 	DATA find(KEY key);
+	bool present(KEY key);
 private:
 	using data_store = std::pair<KEY, DATA>;
 	std::vector<data_store> store;
 
-	bool keyPresent(KEY key);
 };
-
-template<typename KEY, typename DATA>
-inline Dictionary<KEY, DATA>::Dictionary()
-{
-
-}
 
 template<typename KEY, typename DATA>
 inline void Dictionary<KEY, DATA>::insert(KEY key, DATA data)
 {
-	if (!keyPresent(key)) {
+	if (!present(key)) {
 		store.push_back(std::pair<KEY, DATA>(key, data));
 	}
 }
@@ -43,7 +36,7 @@ inline DATA Dictionary<KEY, DATA>::find(KEY key)
 }
 
 template<typename KEY, typename DATA>
-inline bool Dictionary<KEY, DATA>::keyPresent(KEY key)
+inline bool Dictionary<KEY, DATA>::present(KEY key)
 {
 	for (auto pair : store) {
 		if (key == std::get<0>(pair)) {
@@ -52,4 +45,3 @@ inline bool Dictionary<KEY, DATA>::keyPresent(KEY key)
 	}
 	return false;
 }
-
