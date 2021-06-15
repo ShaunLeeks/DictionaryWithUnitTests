@@ -1,8 +1,5 @@
 #pragma once
 
-template<typename KEY>
-bool keyPresent(KEY key);
-
 template <typename KEY, typename DATA>
 class Dictionary
 {
